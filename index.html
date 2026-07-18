@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SersawGyii.COM</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
+
+    <script src="https://pl30365127.effectivecpmnetwork.com/a6/25/48/a62548ab65dbd153162c88be71e77616.js"></script>
+
+    <style>
+        :root {
+            /* International Clean White Palette */
+            --bg-base: #FFFFFF;
+            --bg-surface: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --bg-nav: rgba(255, 255, 255, 0.85);
+            
+            /* User Requested Accents */
+            --orange-light: #FF7415;
+            --orange-dark: #FD6A00;
+            --brand-gradient: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+            
+            --text-main: #111111;
+            --text-muted: #6C757D;
+            --border-light: #E9ECEF;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.06);
+            
+            --font-clean: 'Plus Jakarta Sans', sans-serif;
+        } 
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-clean);
+            -webkit-tap-highlight-color: transparent;
+        } 
+
+        body {
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        } 
+
+        /* 📱 Mobile App Container Structure */
+        .app-shell {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 90px;
+            overflow-x: hidden;
+            background-color: var(--bg-base);
+            box-shadow: 0 0 50px rgba(0,0,0,0.03);
+        } 
+
+        .view-panel { 
+            display: none; 
+            width: 100%;
+            animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .view-panel.active { 
+            display: block;
+        } 
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== CLEAN WHITE HEADER ==================== */
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .logo-container {
+            text-align: center;
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-container .brand-white {
+            color: var(--text-main);
+        }
+
+        .logo-container .brand-orange {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container-fluid {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-container-fluid input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 12px 16px 12px 42px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-container-fluid input:focus {
+            border-color: var(--orange-light);
+            background: var(--bg-base);
+            box-shadow: 0 0 0 4px rgba(255, 116, 21, 0.1);
+        }
+
+        .search-icon-left {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* ==================== MINIMAL PILL CHIPS ==================== */
+        .chip-carousel {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 4px 20px 12px 20px;
+        }
+        .chip-carousel::-webkit-scrollbar { display: none; }
+
+        .chip-pill {
+            padding: 8px 18px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 100px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .chip-pill.active {
+            background: var(--text-main);
+            color: var(--bg-base);
+            border-color: var(--text-main);
+        }
+
+        /* ==================== FLUID WHITE VIDEO CARDS ==================== */
+        .content-stream {
+            padding: 12px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .fluid-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .fluid-card:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        .media-aspect {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9.5;
+            background: #E9ECEF;
+        }
+
+        .media-aspect img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .duration-tag-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .fav-action-trigger {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .fav-action-trigger.active {
+            color: #FF3B30;
+            background: #FFFFFF;
+        }
+
+        .details-wrapper {
+            padding: 0 4px 8px 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .details-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .details-metrics {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .details-metrics span.accent-orange {
+            color: var(--orange-dark);
+            font-weight: 700;
+        }
+
+        /* ==================== CLEAN PLAYER VIEW ==================== */
+        .player-nav-bar {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-base);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .btn-circular-back {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .video-viewport {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+        }
+
+        .video-viewport iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .shield-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            z-index: 10;
+        }
+
+        .viewport-title-text {
+            padding: 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-label {
+            padding: 24px 20px 4px 20px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+        }
+
+        /* ==================== HIGH-END CLEAN BANNER ==================== */
+        .clean-promo-box {
+            margin: 12px 20px;
+            padding: 24px;
+            background: var(--bg-surface);
+            border: 1px dashed var(--orange-light);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .promo-header {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .btn-brand-action {
+            display: inline-block;
+            background: var(--brand-gradient);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(253, 106, 0, 0.2);
+            margin-top: 14px;
+        }
+
+        /* ==================== MODERN BOTTOM DOCK ==================== */
+        .bottom-dock-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 24px 0;
+            z-index: 999;
+        }
+
+        .dock-element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .dock-element.active {
+            color: var(--orange-dark);
+        }
+
+        .dock-icon {
+            font-size: 1.3rem;
+        }
+
+        /* ==================== CLEAN BLUR MODALS ==================== */
+        .gate-blur-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .gate-white-card {
+            background: #FFFFFF;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .gate-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .gate-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 26px;
+        }
+
+        .btn-gate-confirm {
+            background: var(--text-main);
+            color: var(--bg-base);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .state-notice-text {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .clean-spinner {
+            width: 26px;
+            height: 26px;
+            border: 3px solid var(--border-light);
+            border-top: 3px solid var(--text-main);
+            border-radius: 50%;
+            animation: rotational 0.8s linear infinite;
+            margin: 0 auto 12px auto;
+        }
+        @keyframes rotational { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body> 
+
+<!-- 18+ Clean Gate -->
+<div class="gate-blur-screen" id="gateModal">
+    <div class="gate-white-card">
+        <div class="gate-title">Verification</div>
+        <div class="gate-desc">
+            This portal serves adult content intended exclusively for viewers aged 18 and above. Please verify your maturity to continue.
+        </div>
+        <button class="btn-gate-confirm" onclick="document.getElementById('gateModal').style.display='none'">CONFIRM & ENTER</button>
+    </div>
+</div> 
+
+<!-- Clean Ad Interstitial -->
+<div class="gate-blur-screen" id="adPortalModal" style="display: none; background: rgba(255,255,255,0.96);">
+    <div class="gate-white-card" style="padding: 0; overflow: hidden; max-width: 360px;">
+        <iframe id="interstitialFrame" src="" style="width: 100%; aspect-ratio: 4/3; border: none;"></iframe>
+        <div style="background: #F8F9FA; padding: 15px; color: var(--text-main); font-weight: 700; font-size: 0.85rem; border-top: 1px solid var(--border-light);" id="timerCountdown">
+            Verifying request in 10s...
+        </div>
+    </div>
+</div>
+
+<div class="app-shell"> 
+
+    <!-- VIEW: HOME -->
+    <div id="panelHome" class="view-panel active">
+        <div class="header-sticky">
+            <div class="logo-container">
+                <span class="brand-white">SERSAWGYII</span><span class="brand-orange">.COM</span>
+            </div>
+            
+            <div class="search-container-fluid">
+                <span class="search-icon-left">🔍</span>
+                <input type="text" id="queryInput" placeholder="Search clean premium updates...">
+            </div>
+        </div>
+
+        <div class="chip-carousel">
+            <div class="chip-pill active" onclick="filterQuery('asian', this)">Trending</div>
+            <div class="chip-pill" onclick="filterQuery('myanmar', this)">Myanmar</div>
+            <div class="chip-pill" onclick="filterQuery('korean', this)">Korean</div>
+            <div class="chip-pill" onclick="filterQuery('japanese', this)">Japanese</div>
+        </div>
+
+        <div class="content-stream" id="homeStream">
+            <!-- Dynamic Content Load -->
+        </div>
+    </div>
+
+    <!-- VIEW: PLAYER -->
+    <div id="panelPlayer" class="view-panel">
+        <div class="player-nav-bar">
+            <div class="btn-circular-back" onclick="navigateView('home')">❮</div>
+            <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">Stream Mode</div>
+        </div>
+
+        <div class="video-viewport">
+            <div class="shield-layer"></div>
+            <div id="videoEmbedContainer"></div>
+        </div>
+
+        <div class="viewport-title-text" id="videoActiveTitle">Loading presentation details...</div>
+
+        <!-- Clean Monetization Banner -->
+        <div class="clean-promo-box">
+            <div class="promo-header">နေရာလွတ်ရှိသေးသည် ကြော်ငြာထည့်နိုင်ပါပြီ</div>
+            <div style="color: var(--text-muted); font-size: 0.85rem;">
+                စလော့၊ 2D3D နှင့် လုပ်ငန်းကြော်ငြာများကို အထူးဈေးနှုန်းဖြင့် ထည့်သွင်းပေးနေပါသည်။
+            </div>
+            <a href="https://t.me/MmpHubAds" target="_blank" class="btn-brand-action">ကြော်ငြာရန်ဆက်သွယ်ပါ</a>
+        </div>
+
+        <div class="section-label">Recommendations</div>
+        <div class="content-stream" id="recommendStream"></div>
+    </div>
+
+    <!-- VIEW: FAVORITES -->
+    <div id="panelFavs" class="view-panel">
+        <div class="header-sticky">
+            <div class="logo-container">
+                <span class="brand-white">SAVED</span><span class="brand-orange">.ITEMS</span>
+            </div>
+        </div>
+        <div class="content-stream" id="bookmarksStream"></div>
+    </div>
+
+    <!-- MAIN DOCK NAVIGATION -->
+    <div class="bottom-dock-nav">
+        <div class="dock-element active" id="dockHome" onclick="navigateView('home')">
+            <span class="dock-icon">⚡</span>
+            <span>Discover</span>
+        </div>
+        <div class="dock-element" id="dockFav" onclick="triggerFavSecureTransition()">
+            <span class="dock-icon">❤️</span>
+            <span>Favorites</span>
+        </div>
+    </div>
+
+</div> 
+
+<script>
+    let activeQuery = "asian"; 
+    let idxHome = Math.floor(Math.random() * 5) + 1; 
+    let idxRelated = Math.floor(Math.random() * 5) + 6;
+    let lockScrollFetch = false;
+    let currentPanel = "home"; 
+
+    // Sync Storage Ecosystem
+    if (!sessionStorage.getItem('processedKeys')) sessionStorage.setItem('processedKeys', JSON.stringify([]));
+    if (!localStorage.getItem('savedCollection')) localStorage.setItem('savedCollection', JSON.stringify([]));
+
+    document.addEventListener("DOMContentLoaded", () => {
+        executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+
+        document.getElementById('queryInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                activeQuery = this.value.trim() || "asian";
+                idxHome = Math.floor(Math.random() * 5) + 1;
+                executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+                this.blur();
+            }
+        }); 
+
+        window.addEventListener('scroll', () => {
+            if (currentPanel === "favorites") return;
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 650) {
+                if (!lockScrollFetch) {
+                    lockScrollFetch = true; 
+                    if (currentPanel === "home") {
+                        idxHome++;
+                        executeFetchOperation(activeQuery, idxHome, 'homeStream', true);
+                    } else if (currentPanel === "player") {
+                        idxRelated++;
+                        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', true);
+                    }
+                }
+            }
+        });
+    }); 
+
+    function navigateView(panelId) {
+        currentPanel = panelId;
+        document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.dock-element').forEach(d => d.classList.remove('active'));
+
+        if (panelId === 'home') {
+            document.getElementById('panelHome').classList.add('active');
+            document.getElementById('dockHome').classList.add('active');
+            document.getElementById('videoEmbedContainer').innerHTML = ""; 
+        } else if (panelId === 'favorites') {
+            document.getElementById('panelFavs').classList.add('active');
+            document.getElementById('dockFav').classList.add('active');
+            document.getElementById('videoEmbedContainer').innerHTML = ""; 
+            parseSavedData();
+        } else if (panelId === 'player') {
+            document.getElementById('panelPlayer').classList.add('active');
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function triggerFavSecureTransition() {
+        if (currentPanel === 'favorites') return;
+        
+        const gate = document.getElementById('adPortalModal');
+        const frame = document.getElementById('interstitialFrame');
+        const timer = document.getElementById('timerCountdown');
+        
+        frame.src = "https://www.effectivecpmnetwork.com/y8j5fhj7?key=f358a7cf2521836b21c157f8969ed338";
+        gate.style.display = 'flex';
+        
+        let dynamicSec = 10;
+        timer.innerText = `Verifying request in ${dynamicSec}s...`;
+
+        const pulse = setInterval(() => {
+            dynamicSec--;
+            if (dynamicSec <= 0) {
+                clearInterval(pulse);
+                gate.style.display = 'none';
+                frame.src = ""; 
+                navigateView('favorites');
+            } else {
+                timer.innerText = `Verifying request in ${dynamicSec}s...`;
+            }
+        }, 1000);
+    }
+
+    function filterQuery(queryKeyword, component) {
+        document.querySelectorAll('.chip-pill').forEach(c => c.classList.remove('active'));
+        component.classList.add('active');
+        activeQuery = queryKeyword;
+        idxHome = Math.floor(Math.random() * 5) + 1;
+        executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+    }
+
+    function toggleCollectionState(e, packet) {
+        e.stopPropagation(); 
+        let store = JSON.parse(localStorage.getItem('savedCollection'));
+        const targetIdx = store.findIndex(item => item.id === packet.id);
+
+        if (targetIdx > -1) {
+            store.splice(targetIdx, 1);
+            e.currentTarget.classList.remove('active');
+            e.currentTarget.innerHTML = '♡';
+        } else {
+            store.push(packet);
+            e.currentTarget.classList.add('active');
+            e.currentTarget.innerHTML = '❤️';
+        }
+        localStorage.setItem('savedCollection', JSON.stringify(store));
+
+        if (currentPanel === "favorites") parseSavedData();
+    }
+
+    function parseSavedData() {
+        const board = document.getElementById('bookmarksStream');
+        let store = JSON.parse(localStorage.getItem('savedCollection'));
+
+        if (store.length === 0) {
+            board.innerHTML = `<div class="state-notice-text">No saved entries discovered.<br>Tap the heart indicator on premium cards to benchmark elements here.</div>`;
+            return;
+        }
+
+        board.innerHTML = "";
+        store.forEach(vData => {
+            board.appendChild(scaffoldCardNode(vData, true));
+        });
+    }
+
+    async function executeFetchOperation(searchKey, dynamicPage, TargetNodeId, isAppendation) {
+        const stream = document.getElementById(TargetNodeId);
+        
+        if (!isAppendation) {
+            stream.innerHTML = `<div class="state-notice-text"><div class="clean-spinner"></div>Aligning fluid content arrays...</div>`;
+        }
+
+        try {
+            const apiRequestString = `https://www.eporner.com/api/v2/video/search/?query=${encodeURIComponent(searchKey)}&per_page=15&page=${dynamicPage}&thumbsize=big`;
+            const communicationChannel = await fetch(apiRequestString);
+            const verifiedPayload = await communicationChannel.json(); 
+
+            if (!isAppendation) stream.innerHTML = ""; 
+
+            let processedKeys = JSON.parse(sessionStorage.getItem('processedKeys')); 
+            let store = JSON.parse(localStorage.getItem('savedCollection'));
+            let operationalYieldCount = 0;
+
+            if (verifiedPayload.videos && verifiedPayload.videos.length > 0) {
+                verifiedPayload.videos.forEach(entity => {
+                    if (!processedKeys.includes(entity.id)) {
+                        processedKeys.push(entity.id); 
+                        operationalYieldCount++; 
+
+                        const simulatedVisits = entity.views || Math.floor(Math.random() * 600) + 50;
+                        const shortFormMetric = simulatedVisits >= 1000 ? (simulatedVisits / 1000).toFixed(1) + 'K' : simulatedVisits; 
+                        const timestampDisplay = `${entity.length_min}:${entity.length_sec < 10 ? '0' + entity.length_sec : entity.length_sec}`;
+                        const matchingState = store.some(savedUnit => savedUnit.id === entity.id);
+
+                        const structuralObject = {
+                            id: entity.id,
+                            title: entity.title.replace(/'/g, "\\'").replace(/"/g, '\\"'),
+                            embed: entity.embed,
+                            thumb: entity.default_thumb.src,
+                            duration: timestampDisplay,
+                            views: shortFormMetric
+                        };
+
+                        stream.appendChild(scaffoldCardNode(structuralObject, matchingState));
+                    }
+                }); 
+
+                sessionStorage.setItem('processedKeys', JSON.stringify(processedKeys)); 
+
+                if (operationalYieldCount === 0) {
+                    lockScrollFetch = false;
+                    let incrementedPageValue = dynamicPage + 1;
+                    if (currentPanel === "home") {
+                        idxHome = incrementedPageValue;
+                        executeFetchOperation(activeQuery, idxHome, 'homeStream', true);
+                    } else {
+                        idxRelated = incrementedPageValue;
+                        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', true);
+                    }
+                    return;
+                }
+                lockScrollFetch = false;
+            } else {
+                if (!isAppendation) stream.innerHTML = `<div class="state-notice-text">No data packages responded to the request.</div>`;
+                lockScrollFetch = false;
+            }
+        } catch (exception) {
+            console.error(exception);
+            if (!isAppendation) stream.innerHTML = `<div class="state-notice-text">Interface synchronization failure.</div>`;
+            lockScrollFetch = false;
+        }
+    } 
+
+    function scaffoldCardNode(dataset, activeMarker) {
+        const elementWrapper = document.createElement('div');
+        elementWrapper.className = 'fluid-card';
+        elementWrapper.onclick = () => activateBroadcastStream(dataset.embed, dataset.title); 
+
+        elementWrapper.innerHTML = `
+            <div class="media-aspect">
+                <img src="${dataset.thumb}" alt="Cover Graphic">
+                <div class="duration-tag-badge">${dataset.duration}</div>
+                <div class="fav-action-trigger ${activeMarker ? 'active' : ''}" onclick="toggleCollectionState(event, ${JSON.stringify(dataset).replace(/"/g, '&quot;')})">
+                    ${activeMarker ? '❤️' : '♡'}
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <div class="details-title">${dataset.title}</div>
+                <div class="details-metrics">
+                    <span><span class="accent-orange">▶</span> ${dataset.views} Views</span>
+                    <span>UltraHD</span>
+                </div>
+            </div>
+        `;
+        return elementWrapper;
+    }
+
+    function activateBroadcastStream(streamLink, metaLabel) {
+        navigateView('player');
+        document.getElementById('videoEmbedContainer').innerHTML = `
+            <iframe src="${streamLink}" allowfullscreen scrolling="no"></iframe>
+        `;
+        document.getElementById('videoActiveTitle').innerText = metaLabel; 
+
+        idxRelated = Math.floor(Math.random() * 5) + 6;
+        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', false);
+    } 
+</script> 
+
+<script src="https://pl30365128.effectivecpmnetwork.com/8f/ca/73/8fca7385f9007d1f3a68c2f30a6b69fc.js"></script>
+
+</body>
+</html>
